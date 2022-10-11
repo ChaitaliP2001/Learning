@@ -1,0 +1,718 @@
+    ┌──────────────────────────────────────────────────────────────────────┐
+    │                 • MobaXterm Personal Edition v22.1 •                 │
+    │               (SSH client, X server and network tools)               │
+    │                                                                      │
+    │ ⮞ SSH session to Master@4.224.82.104                                 │
+    │   • Direct SSH      :  ✓                                             │
+    │   • SSH compression :  ✓                                             │
+    │   • SSH-browser     :  ✓                                             │
+    │   • X11-forwarding  :  ✓  (remote display is forwarded through SSH)  │
+    │                                                                      │
+    │ ⮞ For more info, ctrl+click on help or visit our website.            │
+    └──────────────────────────────────────────────────────────────────────┘
+
+Welcome to Ubuntu 20.04.5 LTS (GNU/Linux 5.15.0-1020-azure x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Tue Oct 11 03:12:27 UTC 2022
+
+  System load:  0.91               Users logged in:          0
+  Usage of /:   12.2% of 28.89GB   IPv4 address for docker0: 172.17.0.1
+  Memory usage: 11%                IPv4 address for eth0:    10.0.0.4
+  Swap usage:   0%                 IPv4 address for weave:   10.32.0.1
+  Processes:    179
+
+ * Super-optimized for small spaces - read how we shrank the memory
+   footprint of MicroK8s to make it the smallest full K8s around.
+
+   https://ubuntu.com/blog/microk8s-memory-optimisation
+
+0 updates can be applied immediately.
+
+New release '22.04.1 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+Last login: Mon Oct 10 08:46:30 2022 from 115.124.115.77
+Master@Master:~$ sudo su
+root@Master:/home/Master# ls
+Test
+root@Master:/home/Master# cd Test
+root@Master:/home/Master/Test# ls
+LICENSE              depl1.yml        mysql-pv.yml      mysql-service.yml  phpdepl.yl      pv.yml
+configmapwithenv     drupal-depl.yml  mysql-pvc.yml     ngnix-svc.yml      phpdepl.yml     pvc.yml
+configmapwithvolume  mysql-depl.yml   mysql-secret.yml  ngnixpod.yml       phpservice.yml  secrets
+root@Master:/home/Master/Test# kubectl get nodes
+The connection to the server localhost:8080 was refused - did you specify the right host or port?
+root@Master:/home/Master/Test# kubectl reset
+error: unknown command "reset" for "kubectl"
+
+Did you mean this?
+        set
+root@Master:/home/Master/Test# kubeadm reset
+[reset] Reading configuration from the cluster...
+[reset] FYI: You can look at this config file with 'kubectl -n kube-system get cm kubeadm-config -o yaml'
+W1011 03:14:11.072778    3174 preflight.go:55] [reset] WARNING: Changes made to this host by 'kubeadm init' or 'kubeadm join' will be reverted.
+[reset] Are you sure you want to proceed? [y/N]: y
+[reset] Stopping the kubelet service
+[reset] Unmounting mounted directories in "/var/lib/kubelet"
+W1011 03:14:17.041090    3174 cleanupnode.go:94] [reset] Failed to remove containers: [failed to stop running pod a28a8eb067dedbc554d8257d6407cbf280e171ebd3fc9d071f865c2521452d27: output: E1011 03:14:16.281416    4071 remote_runtime.go:269] "StopPodSandbox from runtime service failed" err="rpc error: code = Unknown desc = failed to destroy network for sandbox \"a28a8eb067dedbc554d8257d6407cbf280e171ebd3fc9d071f865c2521452d27\": Delete \"http://127.0.0.1:6784/ip/a28a8eb067dedbc554d8257d6407cbf280e171ebd3fc9d071f865c2521452d27\": dial tcp 127.0.0.1:6784: connect: connection refused" podSandboxID="a28a8eb067dedbc554d8257d6407cbf280e171ebd3fc9d071f865c2521452d27"
+time="2022-10-11T03:14:16Z" level=fatal msg="stopping the pod sandbox \"a28a8eb067dedbc554d8257d6407cbf280e171ebd3fc9d071f865c2521452d27\": rpc error: code = Unknown desc = failed to destroy network for sandbox \"a28a8eb067dedbc554d8257d6407cbf280e171ebd3fc9d071f865c2521452d27\": Delete \"http://127.0.0.1:6784/ip/a28a8eb067dedbc554d8257d6407cbf280e171ebd3fc9d071f865c2521452d27\": dial tcp 127.0.0.1:6784: connect: connection refused"
+: exit status 1, failed to stop running pod b55048edab6c0393bba89654c98deda870030f1a3de457d18a13ae798a44de18: output: E1011 03:14:16.567257    4241 remote_runtime.go:269] "StopPodSandbox from runtime service failed" err="rpc error: code = Unknown desc = failed to destroy network for sandbox \"b55048edab6c0393bba89654c98deda870030f1a3de457d18a13ae798a44de18\": Delete \"http://127.0.0.1:6784/ip/b55048edab6c0393bba89654c98deda870030f1a3de457d18a13ae798a44de18\": dial tcp 127.0.0.1:6784: connect: connection refused" podSandboxID="b55048edab6c0393bba89654c98deda870030f1a3de457d18a13ae798a44de18"
+time="2022-10-11T03:14:16Z" level=fatal msg="stopping the pod sandbox \"b55048edab6c0393bba89654c98deda870030f1a3de457d18a13ae798a44de18\": rpc error: code = Unknown desc = failed to destroy network for sandbox \"b55048edab6c0393bba89654c98deda870030f1a3de457d18a13ae798a44de18\": Delete \"http://127.0.0.1:6784/ip/b55048edab6c0393bba89654c98deda870030f1a3de457d18a13ae798a44de18\": dial tcp 127.0.0.1:6784: connect: connection refused"
+: exit status 1]
+[reset] Deleting contents of directories: [/etc/kubernetes/manifests /etc/kubernetes/pki]
+[reset] Deleting files: [/etc/kubernetes/admin.conf /etc/kubernetes/kubelet.conf /etc/kubernetes/bootstrap-kubelet.conf /etc/kubernetes/controller-manager.conf /etc/kubernetes/scheduler.conf]
+[reset] Deleting contents of stateful directories: [/var/lib/etcd /var/lib/kubelet]
+
+The reset process does not clean CNI configuration. To do so, you must remove /etc/cni/net.d
+
+The reset process does not reset or clean up iptables rules or IPVS tables.
+If you wish to reset iptables, you must do so manually by using the "iptables" command.
+
+If your cluster was setup to utilize IPVS, run ipvsadm --clear (or similar)
+to reset your system's IPVS tables.
+
+The reset process does not clean your kubeconfig files and you must remove them manually.
+Please, check the contents of the $HOME/.kube/config file.
+root@Master:/home/Master/Test# kubeadm reset
+W1011 03:14:25.637001    4325 preflight.go:55] [reset] WARNING: Changes made to this host by 'kubeadm init' or 'kubeadm join' will be reverted.
+[reset] Are you sure you want to proceed? [y/N]: y
+W1011 03:14:28.849173    4325 removeetcdmember.go:85] [reset] No kubeadm config, using etcd pod spec to get data directory
+[reset] No etcd config found. Assuming external etcd
+[reset] Please, manually reset etcd to prevent further issues
+[reset] Stopping the kubelet service
+[reset] Unmounting mounted directories in "/var/lib/kubelet"
+W1011 03:14:29.438836    4325 cleanupnode.go:94] [reset] Failed to remove containers: [failed to stop running pod a28a8eb067dedbc554d8257d6407cbf280e171ebd3fc9d071f865c2521452d27: output: E1011 03:14:29.155567    4469 remote_runtime.go:269] "StopPodSandbox from runtime service failed" err="rpc error: code = Unknown desc = failed to destroy network for sandbox \"a28a8eb067dedbc554d8257d6407cbf280e171ebd3fc9d071f865c2521452d27\": Delete \"http://127.0.0.1:6784/ip/a28a8eb067dedbc554d8257d6407cbf280e171ebd3fc9d071f865c2521452d27\": dial tcp 127.0.0.1:6784: connect: connection refused" podSandboxID="a28a8eb067dedbc554d8257d6407cbf280e171ebd3fc9d071f865c2521452d27"
+time="2022-10-11T03:14:29Z" level=fatal msg="stopping the pod sandbox \"a28a8eb067dedbc554d8257d6407cbf280e171ebd3fc9d071f865c2521452d27\": rpc error: code = Unknown desc = failed to destroy network for sandbox \"a28a8eb067dedbc554d8257d6407cbf280e171ebd3fc9d071f865c2521452d27\": Delete \"http://127.0.0.1:6784/ip/a28a8eb067dedbc554d8257d6407cbf280e171ebd3fc9d071f865c2521452d27\": dial tcp 127.0.0.1:6784: connect: connection refused"
+: exit status 1, failed to stop running pod b55048edab6c0393bba89654c98deda870030f1a3de457d18a13ae798a44de18: output: E1011 03:14:29.437745    4636 remote_runtime.go:269] "StopPodSandbox from runtime service failed" err="rpc error: code = Unknown desc = failed to destroy network for sandbox \"b55048edab6c0393bba89654c98deda870030f1a3de457d18a13ae798a44de18\": Delete \"http://127.0.0.1:6784/ip/b55048edab6c0393bba89654c98deda870030f1a3de457d18a13ae798a44de18\": dial tcp 127.0.0.1:6784: connect: connection refused" podSandboxID="b55048edab6c0393bba89654c98deda870030f1a3de457d18a13ae798a44de18"
+time="2022-10-11T03:14:29Z" level=fatal msg="stopping the pod sandbox \"b55048edab6c0393bba89654c98deda870030f1a3de457d18a13ae798a44de18\": rpc error: code = Unknown desc = failed to destroy network for sandbox \"b55048edab6c0393bba89654c98deda870030f1a3de457d18a13ae798a44de18\": Delete \"http://127.0.0.1:6784/ip/b55048edab6c0393bba89654c98deda870030f1a3de457d18a13ae798a44de18\": dial tcp 127.0.0.1:6784: connect: connection refused"
+: exit status 1]
+[reset] Deleting contents of directories: [/etc/kubernetes/manifests /etc/kubernetes/pki]
+[reset] Deleting files: [/etc/kubernetes/admin.conf /etc/kubernetes/kubelet.conf /etc/kubernetes/bootstrap-kubelet.conf /etc/kubernetes/controller-manager.conf /etc/kubernetes/scheduler.conf]
+[reset] Deleting contents of stateful directories: [/var/lib/kubelet]
+
+The reset process does not clean CNI configuration. To do so, you must remove /etc/cni/net.d
+
+The reset process does not reset or clean up iptables rules or IPVS tables.
+If you wish to reset iptables, you must do so manually by using the "iptables" command.
+
+If your cluster was setup to utilize IPVS, run ipvsadm --clear (or similar)
+to reset your system's IPVS tables.
+
+The reset process does not clean your kubeconfig files and you must remove them manually.
+Please, check the contents of the $HOME/.kube/config file.
+root@Master:/home/Master/Test# kubeadm init
+[init] Using Kubernetes version: v1.25.2
+[preflight] Running pre-flight checks
+[preflight] Pulling images required for setting up a Kubernetes cluster
+[preflight] This might take a minute or two, depending on the speed of your internet connection
+[preflight] You can also perform this action in beforehand using 'kubeadm config images pull'
+[certs] Using certificateDir folder "/etc/kubernetes/pki"
+[certs] Generating "ca" certificate and key
+[certs] Generating "apiserver" certificate and key
+[certs] apiserver serving cert is signed for DNS names [kubernetes kubernetes.default kubernetes.default.svc kubernetes.default.svc.cluster.local master] and IPs [10.96.0.1 10.0.0.4]
+[certs] Generating "apiserver-kubelet-client" certificate and key
+[certs] Generating "front-proxy-ca" certificate and key
+[certs] Generating "front-proxy-client" certificate and key
+[certs] Generating "etcd/ca" certificate and key
+[certs] Generating "etcd/server" certificate and key
+[certs] etcd/server serving cert is signed for DNS names [localhost master] and IPs [10.0.0.4 127.0.0.1 ::1]
+[certs] Generating "etcd/peer" certificate and key
+[certs] etcd/peer serving cert is signed for DNS names [localhost master] and IPs [10.0.0.4 127.0.0.1 ::1]
+[certs] Generating "etcd/healthcheck-client" certificate and key
+[certs] Generating "apiserver-etcd-client" certificate and key
+[certs] Generating "sa" key and public key
+[kubeconfig] Using kubeconfig folder "/etc/kubernetes"
+[kubeconfig] Writing "admin.conf" kubeconfig file
+[kubeconfig] Writing "kubelet.conf" kubeconfig file
+[kubeconfig] Writing "controller-manager.conf" kubeconfig file
+[kubeconfig] Writing "scheduler.conf" kubeconfig file
+[kubelet-start] Writing kubelet environment file with flags to file "/var/lib/kubelet/kubeadm-flags.env"
+[kubelet-start] Writing kubelet configuration to file "/var/lib/kubelet/config.yaml"
+[kubelet-start] Starting the kubelet
+[control-plane] Using manifest folder "/etc/kubernetes/manifests"
+[control-plane] Creating static Pod manifest for "kube-apiserver"
+[control-plane] Creating static Pod manifest for "kube-controller-manager"
+[control-plane] Creating static Pod manifest for "kube-scheduler"
+[etcd] Creating static Pod manifest for local etcd in "/etc/kubernetes/manifests"
+[wait-control-plane] Waiting for the kubelet to boot up the control plane as static Pods from directory "/etc/kubernetes/manifests". This can take up to 4m0s
+[apiclient] All control plane components are healthy after 7.502955 seconds
+[upload-config] Storing the configuration used in ConfigMap "kubeadm-config" in the "kube-system" Namespace
+[kubelet] Creating a ConfigMap "kubelet-config" in namespace kube-system with the configuration for the kubelets in the cluster
+[upload-certs] Skipping phase. Please see --upload-certs
+[mark-control-plane] Marking the node master as control-plane by adding the labels: [node-role.kubernetes.io/control-plane node.kubernetes.io/exclude-from-external-load-balancers]
+[mark-control-plane] Marking the node master as control-plane by adding the taints [node-role.kubernetes.io/control-plane:NoSchedule]
+[bootstrap-token] Using token: 5f0s4z.w8qx2ml9rnr6szar
+[bootstrap-token] Configuring bootstrap tokens, cluster-info ConfigMap, RBAC Roles
+[bootstrap-token] Configured RBAC rules to allow Node Bootstrap tokens to get nodes
+[bootstrap-token] Configured RBAC rules to allow Node Bootstrap tokens to post CSRs in order for nodes to get long term certificate credentials
+[bootstrap-token] Configured RBAC rules to allow the csrapprover controller automatically approve CSRs from a Node Bootstrap Token
+[bootstrap-token] Configured RBAC rules to allow certificate rotation for all node client certificates in the cluster
+[bootstrap-token] Creating the "cluster-info" ConfigMap in the "kube-public" namespace
+[kubelet-finalize] Updating "/etc/kubernetes/kubelet.conf" to point to a rotatable kubelet client certificate and key
+[addons] Applied essential addon: CoreDNS
+[addons] Applied essential addon: kube-proxy
+
+Your Kubernetes control-plane has initialized successfully!
+
+To start using your cluster, you need to run the following as a regular user:
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+Alternatively, if you are the root user, you can run:
+
+  export KUBECONFIG=/etc/kubernetes/admin.conf
+
+You should now deploy a pod network to the cluster.
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+Then you can join any number of worker nodes by running the following on each as root:
+
+kubeadm join 10.0.0.4:6443 --token 5f0s4z.w8qx2ml9rnr6szar \
+        --discovery-token-ca-cert-hash sha256:fa43e17476d29b5914495adca820616b94cba2371f175c0cf7d97780fb7a693d
+root@Master:/home/Master/Test# export KUBECONFIG=/etc/kubernetes/admin.conf
+root@Master:/home/Master/Test# kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s-1.11.yaml
+serviceaccount/weave-net created
+clusterrole.rbac.authorization.k8s.io/weave-net created
+clusterrolebinding.rbac.authorization.k8s.io/weave-net created
+role.rbac.authorization.k8s.io/weave-net created
+rolebinding.rbac.authorization.k8s.io/weave-net created
+daemonset.apps/weave-net created
+root@Master:/home/Master/Test#
+root@Master:/home/Master/Test# kubectl get nodes
+NAME     STATUS   ROLES           AGE   VERSION
+master   Ready    control-plane   93s   v1.25.2
+worker   Ready    <none>          11s   v1.25.2
+root@Master:/home/Master/Test# kubectl get --all-namespaces
+You must specify the type of resource to get. Use "kubectl api-resources" for a complete list of supported resources.
+
+error: Required resource not specified.
+Use "kubectl explain <resource>" for a detailed description of that resource (e.g. kubectl explain pods).
+See 'kubectl get -h' for help and examples
+root@Master:/home/Master/Test# kubectl get pods --all-namespaces
+NAMESPACE     NAME                             READY   STATUS    RESTARTS   AGE
+kube-system   coredns-565d847f94-kv9gv         1/1     Running   0          114s
+kube-system   coredns-565d847f94-nd9j7         1/1     Running   0          114s
+kube-system   etcd-master                      1/1     Running   4          119s
+kube-system   kube-apiserver-master            1/1     Running   4          119s
+kube-system   kube-controller-manager-master   1/1     Running   4          119s
+kube-system   kube-proxy-d2mqk                 1/1     Running   0          40s
+kube-system   kube-proxy-t24t6                 1/1     Running   0          114s
+kube-system   kube-scheduler-master            1/1     Running   4          119s
+kube-system   weave-net-82p5t                  2/2     Running   0          40s
+kube-system   weave-net-hzcts                  2/2     Running   0          76s
+root@Master:/home/Master/Test#
+root@Master:/home/Master/Test# ls
+LICENSE              depl1.yml        mysql-pv.yml      mysql-service.yml  phpdepl.yl      pv.yml
+configmapwithenv     drupal-depl.yml  mysql-pvc.yml     ngnix-svc.yml      phpdepl.yml     pvc.yml
+configmapwithvolume  mysql-depl.yml   mysql-secret.yml  ngnixpod.yml       phpservice.yml  secrets
+root@Master:/home/Master/Test# kubectl get pv
+No resources found
+root@Master:/home/Master/Test#
+root@Master:/home/Master/Test# ls
+LICENSE              depl1.yml        mysql-pv.yml      mysql-service.yml  phpdepl.yl      pv.yml
+configmapwithenv     drupal-depl.yml  mysql-pvc.yml     ngnix-svc.yml      phpdepl.yml     pvc.yml
+configmapwithvolume  mysql-depl.yml   mysql-secret.yml  ngnixpod.yml       phpservice.yml  secrets
+root@Master:/home/Master/Test# vi mysql-pv.yml
+root@Master:/home/Master/Test# kubectl apply -f mysql-pv.yml
+persistentvolume/mysql-pv-volume created
+root@Master:/home/Master/Test# kubectl delete -f mysql-pv.yml
+persistentvolume "mysql-pv-volume" deleted
+root@Master:/home/Master/Test# kubectl apply -f mysql-pv.yml
+persistentvolume/mysql-pv-volume created
+root@Master:/home/Master/Test# kubectl apply -f mysql-pvc.yml
+persistentvolumeclaim/mysql-pv-claim created
+root@Master:/home/Master/Test# kubectl apply -f mysql-service.yml
+service/mysql created
+root@Master:/home/Master/Test# kubectl apply -f mysql-secrete.yml
+error: the path "mysql-secrete.yml" does not exist
+root@Master:/home/Master/Test# kubectl apply -f mysql-secret.yml
+secret/mysql-secret created
+root@Master:/home/Master/Test# kubectl apply -f mysql-depl.yml
+deployment.apps/mysql created
+root@Master:/home/Master/Test# kubectl get pv
+NAME              CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                    STORAGECLASS   REASON   AGE
+mysql-pv-volume   5Gi        RWO            Retain           Bound    default/mysql-pv-claim   manual                  49s
+root@Master:/home/Master/Test# kubectl get pvc
+NAME             STATUS   VOLUME            CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+mysql-pv-claim   Bound    mysql-pv-volume   5Gi        RWO            manual         46s
+root@Master:/home/Master/Test# kubectl get svc
+NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+kubernetes   ClusterIP   10.96.0.1       <none>        443/TCP    4m46s
+mysql        ClusterIP   10.98.213.193   <none>        3306/TCP   43s
+root@Master:/home/Master/Test# kubectl get pods
+NAME                    READY   STATUS    RESTARTS   AGE
+mysql-6c697bd5c-gm7vl   1/1     Running   0          19s
+root@Master:/home/Master/Test# kubectl exec -it mysql-6c697bd5c-gm7vl -- /bin/bash
+root@mysql-6c697bd5c-gm7vl:/# mysql -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 1
+Server version: 5.6.51 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| drupal-db          |
+| mysql              |
+| performance_schema |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql> exit
+Bye
+root@mysql-6c697bd5c-gm7vl:/# exit
+exit
+root@Master:/home/Master/Test# kubectl apply -f phpservice.yml
+service/phpmyadmin-service created
+root@Master:/home/Master/Test# kubectl apply -f phpdepl.yml
+deployment.apps/phpmyadmin-deployment created
+root@Master:/home/Master/Test# kubectl get pods
+NAME                                    READY   STATUS    RESTARTS   AGE
+mysql-6c697bd5c-gm7vl                   1/1     Running   0          111s
+phpmyadmin-deployment-5bbc4766b-7hhxm   1/1     Running   0          6s
+root@Master:/home/Master/Test# kubectl get svc
+NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+kubernetes           ClusterIP   10.96.0.1       <none>        443/TCP        6m28s
+mysql                ClusterIP   10.98.213.193   <none>        3306/TCP       2m25s
+phpmyadmin-service   NodePort    10.109.238.39   <none>        80:30730/TCP   23s
+root@Master:/home/Master/Test# ls
+LICENSE              depl1.yml        mysql-pv.yml      mysql-service.yml  phpdepl.yl      pv.yml
+configmapwithenv     drupal-depl.yml  mysql-pvc.yml     ngnix-svc.yml      phpdepl.yml     pvc.yml
+configmapwithvolume  mysql-depl.yml   mysql-secret.yml  ngnixpod.yml       phpservice.yml  secrets
+root@Master:/home/Master/Test# vi drupal-depl.yml
+root@Master:/home/Master/Test# kubectl apply -f drupal-depl.yml
+service/drupal created
+persistentvolume/drupal-pv-volume created
+persistentvolumeclaim/drupal-claim created
+deployment.apps/drupal created
+root@Master:/home/Master/Test# kubectl get pv
+NAME               CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                    STORAGECLASS   REASON   AGE
+drupal-pv-volume   1Gi        RWO            Retain           Bound    default/drupal-claim     manual                  8s
+mysql-pv-volume    5Gi        RWO            Retain           Bound    default/mysql-pv-claim   manual                  4m46s
+root@Master:/home/Master/Test# kubectl get pvc
+NAME             STATUS   VOLUME             CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+drupal-claim     Bound    drupal-pv-volume   1Gi        RWO            manual         11s
+mysql-pv-claim   Bound    mysql-pv-volume    5Gi        RWO            manual         4m44s
+root@Master:/home/Master/Test# kubectl get pods
+NAME                                    READY   STATUS    RESTARTS   AGE
+drupal-7766f8d767-5lbz7                 1/1     Running   0          16s
+mysql-6c697bd5c-gm7vl                   1/1     Running   0          4m13s
+phpmyadmin-deployment-5bbc4766b-7hhxm   1/1     Running   0          2m28s
+root@Master:/home/Master/Test# kubectl get svc
+NAME                 TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+drupal               LoadBalancer   10.101.123.21   <pending>     8081:32111/TCP   26s
+kubernetes           ClusterIP      10.96.0.1       <none>        443/TCP          8m54s
+mysql                ClusterIP      10.98.213.193   <none>        3306/TCP         4m51s
+phpmyadmin-service   NodePort       10.109.238.39   <none>        80:30730/TCP     2m49s
+root@Master:/home/Master/Test# vi drupal-depl.yml
+root@Master:/home/Master/Test# kubectl apply -f drupal-depl.yml
+persistentvolume/drupal-pv-volume unchanged
+persistentvolumeclaim/drupal-claim unchanged
+deployment.apps/drupal unchanged
+The request is invalid: patch: Invalid value: "map[metadata:map[annotations:map[kubectl.kubernetes.io/last-applied-configuration:{\"apiVersion\":\"v1\",\"kind\":\"Service\",\"metadata\":{\"annotations\":{},\"labels\":{\"app\":\"drupal\"},\"name\":\"drupal\",\"namespace\":\"default\"},\"spec\":{\"ports\":{\"name\":\"web\",\"targetPort\":80},\"selector\":{\"app\":\"drupal\",\"tier\":\"frontend\"},\"type\":\"LoadBalancer\"}}\n]] spec:map[ports:map[name:web targetPort:80]]]": cannot restore slice from map
+root@Master:/home/Master/Test# vi drupal-depl.yml
+root@Master:/home/Master/Test# kubectl apply -f drupal-depl.yml
+error: error parsing drupal-depl.yml: error converting YAML to JSON: yaml: line 11: did not find expected '-' indicator
+root@Master:/home/Master/Test# vi drupal-depl.yml
+root@Master:/home/Master/Test# kubectl apply -f drupal-depl.yml
+service/drupal configured
+persistentvolume/drupal-pv-volume unchanged
+persistentvolumeclaim/drupal-claim unchanged
+deployment.apps/drupal unchanged
+root@Master:/home/Master/Test# kubectl get svc
+NAME                 TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+drupal               LoadBalancer   10.101.123.21   <pending>     8081:32111/TCP   3m35s
+kubernetes           ClusterIP      10.96.0.1       <none>        443/TCP          12m
+mysql                ClusterIP      10.98.213.193   <none>        3306/TCP         8m
+phpmyadmin-service   NodePort       10.109.238.39   <none>        80:30730/TCP     5m58s
+root@Master:/home/Master/Test# vi drupal-depl.yml
+root@Master:/home/Master/Test# kubectl apply -f drupal-depl.yml
+service/drupal configured
+persistentvolume/drupal-pv-volume unchanged
+persistentvolumeclaim/drupal-claim unchanged
+deployment.apps/drupal unchanged
+root@Master:/home/Master/Test# kubectl get svc
+NAME                 TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+drupal               LoadBalancer   10.101.123.21   <pending>     8081:32111/TCP   5m30s
+kubernetes           ClusterIP      10.96.0.1       <none>        443/TCP          13m
+mysql                ClusterIP      10.98.213.193   <none>        3306/TCP         9m55s
+phpmyadmin-service   NodePort       10.109.238.39   <none>        80:30730/TCP     7m53s
+root@Master:/home/Master/Test# vi drupal-depl.yml
+root@Master:/home/Master/Test# kubectl apply -f drupal-depl.yml
+persistentvolume/drupal-pv-volume unchanged
+persistentvolumeclaim/drupal-claim unchanged
+deployment.apps/drupal unchanged
+The Service "drupal" is invalid: spec.ports: Required value
+root@Master:/home/Master/Test# vi drupal-depl.yml
+root@Master:/home/Master/Test# kubectl apply -f drupal-depl.yml
+persistentvolume/drupal-pv-volume unchanged
+persistentvolumeclaim/drupal-claim unchanged
+deployment.apps/drupal unchanged
+The Service "drupal" is invalid: spec.ports: Required value
+root@Master:/home/Master/Test# vi drupal-depl.yml
+root@Master:/home/Master/Test# kubectl apply -f drupal-depl.yml
+error: error parsing drupal-depl.yml: error converting YAML to JSON: yaml: line 13: mapping values are not allowed in this context
+root@Master:/home/Master/Test# vi drupal-depl.yml
+root@Master:/home/Master/Test# kubectl apply -f drupal-depl.yml
+error: error parsing drupal-depl.yml: error converting YAML to JSON: yaml: line 13: mapping values are not allowed in this context
+root@Master:/home/Master/Test# vi drupal-depl.yml
+root@Master:/home/Master/Test# kubectl apply -f drupal-depl.yml
+error: error parsing drupal-depl.yml: error converting YAML to JSON: yaml: line 13: did not find expected key
+root@Master:/home/Master/Test# vi drupal-depl.yml
+root@Master:/home/Master/Test# kubectl apply -f drupal-depl.yml
+error: error parsing drupal-depl.yml: error converting YAML to JSON: yaml: line 13: did not find expected key
+root@Master:/home/Master/Test# vi drupal-depl.yml
+root@Master:/home/Master/Test# kubectl apply -f drupal-depl.yml
+error: error parsing drupal-depl.yml: error converting YAML to JSON: yaml: line 13: did not find expected key
+root@Master:/home/Master/Test# vi drupal-depl.yml
+root@Master:/home/Master/Test# kubectl apply -f drupal-depl.yml
+error: error parsing drupal-depl.yml: error converting YAML to JSON: yaml: line 13: did not find expected key
+root@Master:/home/Master/Test#
+root@Master:/home/Master/Test#
+Network error: Software caused connection abort
+
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+Session stopped
+    - Press <return> to exit tab
+    - Press R to restart session
+    - Press S to save terminal output to file
+    ┌──────────────────────────────────────────────────────────────────────┐
+    │                 • MobaXterm Personal Edition v22.1 •                 │
+    │               (SSH client, X server and network tools)               │
+    │                                                                      │
+    │ ⮞ SSH session to Master@4.224.82.104                                 │
+    │   • Direct SSH      :  ✓                                             │
+    │   • SSH compression :  ✓                                             │
+    │   • SSH-browser     :  ✓                                             │
+    │   • X11-forwarding  :  ✓  (remote display is forwarded through SSH)  │
+    │                                                                      │
+    │ ⮞ For more info, ctrl+click on help or visit our website.            │
+    └──────────────────────────────────────────────────────────────────────┘
+
+Welcome to Ubuntu 20.04.5 LTS (GNU/Linux 5.15.0-1020-azure x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Tue Oct 11 04:21:44 UTC 2022
+
+  System load:  0.03               Users logged in:          0
+  Usage of /:   12.3% of 28.89GB   IPv4 address for docker0: 172.17.0.1
+  Memory usage: 14%                IPv4 address for eth0:    10.0.0.4
+  Swap usage:   0%                 IPv4 address for weave:   10.32.0.1
+  Processes:    161                IPv4 address for weave:   10.32.0.2
+
+ * Super-optimized for small spaces - read how we shrank the memory
+   footprint of MicroK8s to make it the smallest full K8s around.
+
+   https://ubuntu.com/blog/microk8s-memory-optimisation
+
+0 updates can be applied immediately.
+
+New release '22.04.1 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+Last login: Tue Oct 11 03:12:27 2022 from 152.57.96.118
+Master@Master:~$ sudo su
+root@Master:/home/Master#
+root@Master:/home/Master# vi drupal-depl.yml
+root@Master:/home/Master# ls
+Test  drupal-depl.yml
+root@Master:/home/Master# kubectl get pods
+The connection to the server localhost:8080 was refused - did you specify the right host or port?
+root@Master:/home/Master# cd Test
+root@Master:/home/Master/Test# ls
+LICENSE              depl1.yml        mysql-pv.yml      mysql-service.yml  phpdepl.yl      pv.yml
+configmapwithenv     drupal-depl.yml  mysql-pvc.yml     ngnix-svc.yml      phpdepl.yml     pvc.yml
+configmapwithvolume  mysql-depl.yml   mysql-secret.yml  ngnixpod.yml       phpservice.yml  secrets
+root@Master:/home/Master/Test# kubeadm reset
+[reset] Reading configuration from the cluster...
+[reset] FYI: You can look at this config file with 'kubectl -n kube-system get cm kubeadm-config -o yaml'
+W1011 04:27:59.959667    8663 preflight.go:55] [reset] WARNING: Changes made to this host by 'kubeadm init' or 'kubeadm join' will be reverted.
+[reset] Are you sure you want to proceed? [y/N]: y
+[reset] Stopping the kubelet service
+[reset] Unmounting mounted directories in "/var/lib/kubelet"
+[reset] Deleting contents of directories: [/etc/kubernetes/manifests /etc/kubernetes/pki]
+[reset] Deleting files: [/etc/kubernetes/admin.conf /etc/kubernetes/kubelet.conf /etc/kubernetes/bootstrap-kubelet.conf /etc/kubernetes/controller-manager.conf /etc/kubernetes/scheduler.conf]
+[reset] Deleting contents of stateful directories: [/var/lib/etcd /var/lib/kubelet]
+
+The reset process does not clean CNI configuration. To do so, you must remove /etc/cni/net.d
+
+The reset process does not reset or clean up iptables rules or IPVS tables.
+If you wish to reset iptables, you must do so manually by using the "iptables" command.
+
+If your cluster was setup to utilize IPVS, run ipvsadm --clear (or similar)
+to reset your system's IPVS tables.
+
+The reset process does not clean your kubeconfig files and you must remove them manually.
+Please, check the contents of the $HOME/.kube/config file.
+root@Master:/home/Master/Test# kubeadm init
+[init] Using Kubernetes version: v1.25.2
+[preflight] Running pre-flight checks
+[preflight] Pulling images required for setting up a Kubernetes cluster
+[preflight] This might take a minute or two, depending on the speed of your internet connection
+[preflight] You can also perform this action in beforehand using 'kubeadm config images pull'
+[certs] Using certificateDir folder "/etc/kubernetes/pki"
+[certs] Generating "ca" certificate and key
+[certs] Generating "apiserver" certificate and key
+[certs] apiserver serving cert is signed for DNS names [kubernetes kubernetes.default kubernetes.default.svc kubernetes.default.svc.cluster.local master] and IPs [10.96.0.1 10.0.0.4]
+[certs] Generating "apiserver-kubelet-client" certificate and key
+[certs] Generating "front-proxy-ca" certificate and key
+[certs] Generating "front-proxy-client" certificate and key
+[certs] Generating "etcd/ca" certificate and key
+[certs] Generating "etcd/server" certificate and key
+[certs] etcd/server serving cert is signed for DNS names [localhost master] and IPs [10.0.0.4 127.0.0.1 ::1]
+[certs] Generating "etcd/peer" certificate and key
+[certs] etcd/peer serving cert is signed for DNS names [localhost master] and IPs [10.0.0.4 127.0.0.1 ::1]
+[certs] Generating "etcd/healthcheck-client" certificate and key
+[certs] Generating "apiserver-etcd-client" certificate and key
+[certs] Generating "sa" key and public key
+[kubeconfig] Using kubeconfig folder "/etc/kubernetes"
+[kubeconfig] Writing "admin.conf" kubeconfig file
+[kubeconfig] Writing "kubelet.conf" kubeconfig file
+[kubeconfig] Writing "controller-manager.conf" kubeconfig file
+[kubeconfig] Writing "scheduler.conf" kubeconfig file
+[kubelet-start] Writing kubelet environment file with flags to file "/var/lib/kubelet/kubeadm-flags.env"
+[kubelet-start] Writing kubelet configuration to file "/var/lib/kubelet/config.yaml"
+[kubelet-start] Starting the kubelet
+[control-plane] Using manifest folder "/etc/kubernetes/manifests"
+[control-plane] Creating static Pod manifest for "kube-apiserver"
+[control-plane] Creating static Pod manifest for "kube-controller-manager"
+[control-plane] Creating static Pod manifest for "kube-scheduler"
+[etcd] Creating static Pod manifest for local etcd in "/etc/kubernetes/manifests"
+[wait-control-plane] Waiting for the kubelet to boot up the control plane as static Pods from directory "/etc/kubernetes/manifests". This can take up to 4m0s
+[apiclient] All control plane components are healthy after 8.002580 seconds
+[upload-config] Storing the configuration used in ConfigMap "kubeadm-config" in the "kube-system" Namespace
+[kubelet] Creating a ConfigMap "kubelet-config" in namespace kube-system with the configuration for the kubelets in the cluster
+[upload-certs] Skipping phase. Please see --upload-certs
+[mark-control-plane] Marking the node master as control-plane by adding the labels: [node-role.kubernetes.io/control-plane node.kubernetes.io/exclude-from-external-load-balancers]
+[mark-control-plane] Marking the node master as control-plane by adding the taints [node-role.kubernetes.io/control-plane:NoSchedule]
+[bootstrap-token] Using token: tv7a8h.2jk7a5ypshix7arx
+[bootstrap-token] Configuring bootstrap tokens, cluster-info ConfigMap, RBAC Roles
+[bootstrap-token] Configured RBAC rules to allow Node Bootstrap tokens to get nodes
+[bootstrap-token] Configured RBAC rules to allow Node Bootstrap tokens to post CSRs in order for nodes to get long term certificate credentials
+[bootstrap-token] Configured RBAC rules to allow the csrapprover controller automatically approve CSRs from a Node Bootstrap Token
+[bootstrap-token] Configured RBAC rules to allow certificate rotation for all node client certificates in the cluster
+[bootstrap-token] Creating the "cluster-info" ConfigMap in the "kube-public" namespace
+[kubelet-finalize] Updating "/etc/kubernetes/kubelet.conf" to point to a rotatable kubelet client certificate and key
+[addons] Applied essential addon: CoreDNS
+[addons] Applied essential addon: kube-proxy
+
+Your Kubernetes control-plane has initialized successfully!
+
+To start using your cluster, you need to run the following as a regular user:
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+Alternatively, if you are the root user, you can run:
+
+  export KUBECONFIG=/etc/kubernetes/admin.conf
+
+You should now deploy a pod network to the cluster.
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+Then you can join any number of worker nodes by running the following on each as root:
+
+kubeadm join 10.0.0.4:6443 --token tv7a8h.2jk7a5ypshix7arx \
+        --discovery-token-ca-cert-hash sha256:2890383e31fbc93281dbdaa4f4d3c0c33b1845a7df5daabb8122798cb5515c16
+root@Master:/home/Master/Test# export KUBECONFIG=/etc/kubernetes/admin.conf
+root@Master:/home/Master/Test# kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s-1.11.yaml
+serviceaccount/weave-net created
+clusterrole.rbac.authorization.k8s.io/weave-net created
+clusterrolebinding.rbac.authorization.k8s.io/weave-net created
+role.rbac.authorization.k8s.io/weave-net created
+rolebinding.rbac.authorization.k8s.io/weave-net created
+daemonset.apps/weave-net created
+root@Master:/home/Master/Test# kubectl get nodes
+NAME     STATUS   ROLES           AGE     VERSION
+master   Ready    control-plane   8m19s   v1.25.2
+worker   Ready    <none>          93s     v1.25.2
+root@Master:/home/Master/Test# ls
+LICENSE              depl1.yml        mysql-pv.yml      mysql-service.yml  phpdepl.yl      pv.yml
+configmapwithenv     drupal-depl.yml  mysql-pvc.yml     ngnix-svc.yml      phpdepl.yml     pvc.yml
+configmapwithvolume  mysql-depl.yml   mysql-secret.yml  ngnixpod.yml       phpservice.yml  secrets
+root@Master:/home/Master/Test# kubectl get pv
+No resources found
+root@Master:/home/Master/Test#
+root@Master:/home/Master/Test# kubectl get nodes
+NAME     STATUS   ROLES           AGE     VERSION
+master   Ready    control-plane   14m     v1.25.2
+worker   Ready    <none>          7m33s   v1.25.2
+root@Master:/home/Master/Test# ls
+LICENSE              depl1.yml        mysql-pv.yml      mysql-service.yml  phpdepl.yl      pv.yml
+configmapwithenv     drupal-depl.yml  mysql-pvc.yml     ngnix-svc.yml      phpdepl.yml     pvc.yml
+configmapwithvolume  mysql-depl.yml   mysql-secret.yml  ngnixpod.yml       phpservice.yml  secrets
+root@Master:/home/Master/Test# kubectl apply -f mysql-pv.yml
+persistentvolume/mysql-pv-volume created
+root@Master:/home/Master/Test# kubectl apply -f mysql-pvc.yml
+persistentvolumeclaim/mysql-pv-claim created
+root@Master:/home/Master/Test# kubectl apply -f mysql-secret.yml
+secret/mysql-secret created
+root@Master:/home/Master/Test# kubectl apply -f mysql-service.yml
+service/mysql created
+root@Master:/home/Master/Test# kubectl apply -f mysql-depl.yml
+deployment.apps/mysql created
+root@Master:/home/Master/Test# kubectl get pv
+NAME              CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                    STORAGECLASS   REASON   AGE
+mysql-pv-volume   5Gi        RWO            Retain           Bound    default/mysql-pv-claim   manual                  85s
+root@Master:/home/Master/Test# kubectl get pvc
+NAME             STATUS   VOLUME            CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+mysql-pv-claim   Bound    mysql-pv-volume   5Gi        RWO            manual         73s
+root@Master:/home/Master/Test# kubectl get pods
+NAME                    READY   STATUS    RESTARTS   AGE
+mysql-6c697bd5c-mv2r7   1/1     Running   0          13s
+root@Master:/home/Master/Test# kubectl get svc
+NAME         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
+kubernetes   ClusterIP   10.96.0.1        <none>        443/TCP    18m
+mysql        ClusterIP   10.103.214.133   <none>        3306/TCP   30s
+root@Master:/home/Master/Test# kubectl apply -f phpdepl.yml
+deployment.apps/phpmyadmin-deployment created
+root@Master:/home/Master/Test# kubectl apply -f phpservice.yml
+service/phpmyadmin-service created
+root@Master:/home/Master/Test# kubectl get pods
+NAME                                    READY   STATUS    RESTARTS   AGE
+mysql-6c697bd5c-mv2r7                   1/1     Running   0          66s
+phpmyadmin-deployment-5bbc4766b-jhsh2   1/1     Running   0          15s
+root@Master:/home/Master/Test# kubectl get svc
+NAME                 TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
+kubernetes           ClusterIP   10.96.0.1        <none>        443/TCP        19m
+mysql                ClusterIP   10.103.214.133   <none>        3306/TCP       78s
+phpmyadmin-service   NodePort    10.103.54.88     <none>        80:30167/TCP   11s
+root@Master:/home/Master/Test# ls
+LICENSE              depl1.yml        mysql-pv.yml      mysql-service.yml  phpdepl.yl      pv.yml
+configmapwithenv     drupal-depl.yml  mysql-pvc.yml     ngnix-svc.yml      phpdepl.yml     pvc.yml
+configmapwithvolume  mysql-depl.yml   mysql-secret.yml  ngnixpod.yml       phpservice.yml  secrets
+root@Master:/home/Master/Test# vi drupal-depl.yml
+root@Master:/home/Master/Test# kubectl apply -f drupal-depl.yml
+error: error parsing drupal-depl.yml: error converting YAML to JSON: yaml: line 13: did not find expected key
+root@Master:/home/Master/Test# vi drupal-depl.yml
+root@Master:/home/Master/Test# kubectl apply -f drupal-depl.yml
+error: error parsing drupal-depl.yml: error converting YAML to JSON: yaml: line 13: did not find expected key
+root@Master:/home/Master/Test# vi drupal-depl.yml
+root@Master:/home/Master/Test# kubectl apply -f drupal-depl.yml
+persistentvolume/drupal-pv-volume created
+persistentvolumeclaim/drupal-claim created
+deployment.apps/drupal created
+root@Master:/home/Master/Test# kubectl expose deployment drupal --type=LoadBalancer --name=Ex-service
+The Service "Ex-service" is invalid: metadata.name: Invalid value: "Ex-service": a DNS-1035 label must consist of lower case alphanumeric characters or '-', start with an alphabetic character, and end with an alphanumeric character (e.g. 'my-name',  or 'abc-123', regex used for validation is '[a-z]([-a-z0-9]*[a-z0-9])?')
+root@Master:/home/Master/Test# kubectl expose deployment drupal --type=LoadBalancer --name=service
+service/service exposed
+root@Master:/home/Master/Test# kubectl get svc
+NAME                 TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+kubernetes           ClusterIP      10.96.0.1        <none>        443/TCP          28m
+mysql                ClusterIP      10.103.214.133   <none>        3306/TCP         10m
+phpmyadmin-service   NodePort       10.103.54.88     <none>        80:30167/TCP     9m51s
+service              LoadBalancer   10.106.255.43    <pending>     8081:30996/TCP   14s
+root@Master:/home/Master/Test# kubectl get svc
+NAME                 TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+kubernetes           ClusterIP      10.96.0.1        <none>        443/TCP          29m
+mysql                ClusterIP      10.103.214.133   <none>        3306/TCP         11m
+phpmyadmin-service   NodePort       10.103.54.88     <none>        80:30167/TCP     10m
+service              LoadBalancer   10.106.255.43    <pending>     8081:30996/TCP   30s
+root@Master:/home/Master/Test# kubectl delete svc service
+service "service" deleted
+root@Master:/home/Master/Test# vi drupal-depl.yml
+root@Master:/home/Master/Test# kubectl apply -f drupal-depl.yml
+error: error parsing drupal-depl.yml: error converting YAML to JSON: yaml: line 11: did not find expected key
+root@Master:/home/Master/Test# wq
+wq: command not found
+root@Master:/home/Master/Test# vi drupal-depl.yml
+root@Master:/home/Master/Test# kubectl apply -f drupal-depl.yml
+service/drupal-service created
+persistentvolume/drupal-pv-volume unchanged
+persistentvolumeclaim/drupal-claim unchanged
+deployment.apps/drupal unchanged
+root@Master:/home/Master/Test# kubectl get pods
+NAME                                    READY   STATUS    RESTARTS   AGE
+drupal-7766f8d767-bnlfj                 1/1     Running   0          15m
+mysql-6c697bd5c-mv2r7                   1/1     Running   0          24m
+phpmyadmin-deployment-5bbc4766b-jhsh2   1/1     Running   0          23m
+root@Master:/home/Master/Test# kubectl get svc
+NAME                 TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
+drupal-service       LoadBalancer   10.109.174.197   <pending>     80:32615/TCP   13s
+kubernetes           ClusterIP      10.96.0.1        <none>        443/TCP        42m
+mysql                ClusterIP      10.103.214.133   <none>        3306/TCP       25m
+phpmyadmin-service   NodePort       10.103.54.88     <none>        80:30167/TCP   23m
+root@Master:/home/Master/Test# kubectl get svc
+NAME                 TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
+drupal-service       LoadBalancer   10.109.174.197   <pending>     80:32615/TCP   88s
+kubernetes           ClusterIP      10.96.0.1        <none>        443/TCP        44m
+mysql                ClusterIP      10.103.214.133   <none>        3306/TCP       26m
+phpmyadmin-service   NodePort       10.103.54.88     <none>        80:30167/TCP   25m
+root@Master:/home/Master/Test# vi drupal-depl.yml
+root@Master:/home/Master/Test# kubectl get pods
+NAME                                    READY   STATUS    RESTARTS   AGE
+drupal-7766f8d767-bnlfj                 1/1     Running   0          21m
+mysql-6c697bd5c-mv2r7                   1/1     Running   0          31m
+phpmyadmin-deployment-5bbc4766b-jhsh2   1/1     Running   0          30m
+root@Master:/home/Master/Test# vi drupal-depl.yml
+root@Master:/home/Master/Test# kubectl get svc
+NAME                 TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
+drupal-service       LoadBalancer   10.109.174.197   <pending>     80:32615/TCP   11m
+kubernetes           ClusterIP      10.96.0.1        <none>        443/TCP        53m
+mysql                ClusterIP      10.103.214.133   <none>        3306/TCP       35m
+phpmyadmin-service   NodePort       10.103.54.88     <none>        80:30167/TCP   34m
+root@Master:/home/Master/Test# vi drupal-depl.yml
+apiVersion: v1
+kind: Service
+metadata:
+  name: drupal-service
+spec:
+  ports:
+    -
+      name: http
+      port: 80
+      protocol: TCP
+  selector:
+    app: drupal
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: drupal-pv-volume
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/test"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: drupal-claim
+  labels:
+    app: drupal
+spec:
+  accessModes:
+                                                                                                                       14,3          Top
+
